@@ -99,3 +99,14 @@ canvas {
 .bottom-nav button.active {
     background-color: #777;
 }
+
+#task-section button {
+    padding: 10px 20px;
+    font-size: 18px;
+    margin-top: 20px;
+    cursor: pointer;
+    background-color: #555;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
