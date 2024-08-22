@@ -167,4 +167,52 @@ joinCommunityBtn.addEventListener("click", () => {
 
         alert("You have earned 10 TOSHI!");
     }
+
+const telegramId = "<IL_TUO_TELEGRAM_ID>"; // Sostituisci con l'ID Telegram dell'utente
+
+async function getUserState() {
+  const response = await fetch("http://localhost:8000/getUserState", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ telegramId }),
+  });
+
+  const data = await response.json();
+  return data;
+}
+
+async function updateUserState(highScore: number, toshiBalance: number, communityJoined: boolean) {
+  const response = await fetch("http://localhost:8000/updateUserState", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ telegramId, highScore, toshiBalance, communityJoined }),
+  });
+
+  const data = await response.json();
+  return data;
+}
+
+// Carica lo stato dell'utente al caricamento della pagina
+async function loadUserState() {
+  const userData = await getUserState();
+  highScore = userData.highScore || 0;
+  toshiBalance = userData.toshiBalance || 0;
+  communityJoined = userData.communityJoined || false;
+
+  document.getElementById("highScore")!.innerText = highScore.toString();
+  document.getElementById("toshiBalance")!.innerText = toshiBalance.toString();
+  updateJoinCommunityButton();
+}
+
+// Aggiorna lo stato dell'utente nel backend quando necessario
+async function saveUserState() {
+  await updateUserState(highScore, toshiBalance, communityJoined);
+}
+
+// Assicurati di chiamare `saveUserState` ogni volta che lo stato dell'utente cambia
+// Ad esempio, quando si aggiorna il punteggio o il saldo TOSHI.
 });
