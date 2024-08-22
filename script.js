@@ -167,7 +167,6 @@ joinCommunityBtn.addEventListener("click", () => {
 
         alert("You have earned 10 TOSHI!");
     }
-
 const telegramId = "<IL_TUO_TELEGRAM_ID>"; // Sostituisci con l'ID Telegram dell'utente
 
 async function getUserState() {
@@ -183,7 +182,7 @@ async function getUserState() {
   return data;
 }
 
-async function updateUserState(highScore: number, toshiBalance: number, communityJoined: boolean) {
+async function updateUserState(highScore, toshiBalance, communityJoined) {
   const response = await fetch("http://localhost:8000/updateUserState", {
     method: "POST",
     headers: {
@@ -203,8 +202,8 @@ async function loadUserState() {
   toshiBalance = userData.toshiBalance || 0;
   communityJoined = userData.communityJoined || false;
 
-  document.getElementById("highScore")!.innerText = highScore.toString();
-  document.getElementById("toshiBalance")!.innerText = toshiBalance.toString();
+  document.getElementById("highScore").innerText = highScore;
+  document.getElementById("toshiBalance").innerText = toshiBalance;
   updateJoinCommunityButton();
 }
 
@@ -215,4 +214,25 @@ async function saveUserState() {
 
 // Assicurati di chiamare `saveUserState` ogni volta che lo stato dell'utente cambia
 // Ad esempio, quando si aggiorna il punteggio o il saldo TOSHI.
+
+
+
+// Esempio di utilizzo nel gioco Snake
+
+// Dopo ogni aggiornamento dello stato dell'utente
+async function updateGameState(newScore, newToshiBalance, communityStatus) {
+  highScore = newScore > highScore ? newScore : highScore;
+  toshiBalance = newToshiBalance;
+  communityJoined = communityStatus;
+
+  await saveUserState();
+
+  document.getElementById("highScore").innerText = highScore;
+  document.getElementById("toshiBalance").innerText = toshiBalance;
+  updateJoinCommunityButton();
+}
+
+// Chiamare questa funzione quando necessario
+updateGameState(currentScore, currentToshiBalance, hasJoinedCommunity);
+    
 });
