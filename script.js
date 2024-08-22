@@ -29,7 +29,9 @@ const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 
 const box = 20;
-const canvasSize = 400;
+let canvasSize = Math.min(window.innerWidth, window.innerHeight) * 0.9;
+canvasSize = Math.floor(canvasSize / box) * box; // Arrotonda per adattarsi alla griglia
+
 canvas.width = canvasSize;
 canvas.height = canvasSize;
 
@@ -38,8 +40,8 @@ snake[0] = { x: 9 * box, y: 10 * box };
 
 let direction;
 let food = {
-    x: Math.floor(Math.random() * 19 + 1) * box,
-    y: Math.floor(Math.random() * 19 + 1) * box
+    x: Math.floor(Math.random() * (canvas.width / box)) * box,
+    y: Math.floor(Math.random() * (canvas.height / box)) * box
 };
 
 let score = 0;
@@ -98,8 +100,8 @@ function draw() {
     if (snakeX == food.x && snakeY == food.y) {
         score++;
         food = {
-            x: Math.floor(Math.random() * 19 + 1) * box,
-            y: Math.floor(Math.random() * 19 + 1) * box
+            x: Math.floor(Math.random() * (canvas.width / box)) * box,
+            y: Math.floor(Math.random() * (canvas.height / box)) * box
         };
     } else {
         snake.pop();
