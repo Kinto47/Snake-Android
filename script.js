@@ -46,8 +46,10 @@ let food = {
 
 let score = 0;
 let highScore = localStorage.getItem("highScore") || 0;
+let toshiBalance = localStorage.getItem("toshiBalance") || 0;
 
 document.getElementById("highScore").innerText = highScore;
+document.getElementById("toshiBalance").innerText = toshiBalance;
 
 document.addEventListener("keydown", directionControl);
 document.getElementById("leftBtn").addEventListener("click", () => direction = "LEFT");
@@ -128,3 +130,20 @@ function draw() {
 }
 
 const game = setInterval(draw, 100);
+
+// Gestione delle ricompense
+const joinCommunityBtn = document.getElementById("joinCommunityBtn");
+
+joinCommunityBtn.addEventListener("click", () => {
+    if (confirm("Do you want to join the community and earn 10 TOSHI?")) {
+        // Simula l'azione di unire la community
+        window.open("https://t.me/thesatoshicircle", "_blank");
+
+        // Aumenta il saldo TOSHI
+        toshiBalance = parseInt(toshiBalance) + 10;
+        localStorage.setItem("toshiBalance", toshiBalance);
+        document.getElementById("toshiBalance").innerText = toshiBalance;
+
+        alert("You have earned 10 TOSHI!");
+    }
+});
