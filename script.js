@@ -145,6 +145,9 @@ function updateJoinCommunityButton() {
     }
 }
 
+// Controlla lo stato del completamento della task al caricamento della pagina
+updateJoinCommunityButton();
+
 joinCommunityBtn.addEventListener("click", () => {
     if (!communityJoined && confirm("Do you want to join the community and earn 10 TOSHI?")) {
         // Simula l'azione di unire la community
@@ -165,6 +168,3 @@ joinCommunityBtn.addEventListener("click", () => {
         alert("You have earned 10 TOSHI!");
     }
 });
-
-// Aggiorna lo stato del pulsante alla caricamento della pagina
-updateJoinCommunityButton();
