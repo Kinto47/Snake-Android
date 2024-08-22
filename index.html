@@ -3,23 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web App</title>
+    <title>Modern Snake Game</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div id="app">
         <div id="play-section" class="section">
             <canvas id="gameCanvas"></canvas>
+            <div class="score-board">
+                <h2>Score: <span id="score">0</span></h2>
+                <h2>High Score: <span id="highScore">0</span></h2>
+                <h2>TOSHI Balance: <span id="toshiBalance">0</span></h2>
+            </div>
             <div class="controls">
                 <button id="leftBtn">⬅️</button>
                 <button id="upBtn">⬆️</button>
                 <button id="downBtn">⬇️</button>
                 <button id="rightBtn">➡️</button>
-            </div>
-            <div class="score-board">
-                <h2>Score: <span id="score">0</span></h2>
-                <h2>High Score: <span id="highScore">0</span></h2>
-                <h2>TOSHI Balance: <span id="toshiBalance">0</span></h2>
             </div>
         </div>
 
