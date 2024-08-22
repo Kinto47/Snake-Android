@@ -1,3 +1,30 @@
+// Gestione della navigazione tra sezioni
+const playSection = document.getElementById("play-section");
+const taskSection = document.getElementById("task-section");
+const playBtn = document.getElementById("playBtn");
+const taskBtn = document.getElementById("taskBtn");
+
+function showSection(section) {
+    if (section === "play") {
+        playSection.style.display = "flex";
+        taskSection.style.display = "none";
+        playBtn.classList.add("active");
+        taskBtn.classList.remove("active");
+    } else if (section === "task") {
+        playSection.style.display = "none";
+        taskSection.style.display = "flex";
+        playBtn.classList.remove("active");
+        taskBtn.classList.add("active");
+    }
+}
+
+playBtn.addEventListener("click", () => showSection("play"));
+taskBtn.addEventListener("click", () => showSection("task"));
+
+// Inizia mostrando la sezione "Play"
+showSection("play");
+
+// Logica del gioco Snake
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 
