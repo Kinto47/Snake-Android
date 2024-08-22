@@ -1,12 +1,12 @@
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #333;
-    color: white;
+    background: linear-gradient(45deg, #1a1a1a, #333);
+    color: #fff;
 }
 
 #app {
@@ -35,44 +35,60 @@ body {
 }
 
 canvas {
-    background-color: #000;
-    border: 5px solid #fff;
+    background: #000;
+    border: 5px solid #00ff00;
+    box-shadow: 0 0 15px #00ff00;
+    border-radius: 15px;
     margin-bottom: 10px;
-    width: 100%;
-    height: auto;
-    max-width: 400px;
-    max-height: 400px;
-}
-
-.controls {
-    display: flex;
-    justify-content: center;
-    margin-top: 10px;
-}
-
-.controls button {
-    background-color: #fff;
-    color: #333;
-    border: none;
-    padding: 10px;
-    margin: 5px;
-    font-size: 20px;
-    cursor: pointer;
-    border-radius: 5px;
-    width: 60px;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .score-board {
-    margin-top: 10px;
-    text-align: center;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    max-width: 400px;
+    margin-bottom: 20px;
 }
 
 .score-board h2 {
     margin: 5px 0;
+    font-weight: normal;
+    text-align: center;
+}
+
+.controls {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    max-width: 400px;
+}
+
+.controls button {
+    background: #00ff00;
+    color: #000;
+    border: none;
+    padding: 15px;
+    margin: 5px;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #00ff00;
+    transition: background 0.3s ease;
+}
+
+.controls button:hover {
+    background: #00cc00;
+}
+
+#task-section button {
+    padding: 10px 20px;
+    font-size: 18px;
+    margin-top: 20px;
+    cursor: pointer;
+    background-color: #555;
+    color: white;
+    border: none;
+    border-radius: 5px;
 }
 
 .bottom-nav {
@@ -98,15 +114,4 @@ canvas {
 
 .bottom-nav button.active {
     background-color: #777;
-}
-
-#task-section button {
-    padding: 10px 20px;
-    font-size: 18px;
-    margin-top: 20px;
-    cursor: pointer;
-    background-color: #555;
-    color: white;
-    border: none;
-    border-radius: 5px;
 }
