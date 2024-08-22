@@ -47,6 +47,7 @@ let food = {
 let score = 0;
 let highScore = localStorage.getItem("highScore") || 0;
 let toshiBalance = localStorage.getItem("toshiBalance") || 0;
+let communityJoined = localStorage.getItem("communityJoined") === "true";
 
 document.getElementById("highScore").innerText = highScore;
 document.getElementById("toshiBalance").innerText = toshiBalance;
@@ -134,8 +135,18 @@ const game = setInterval(draw, 100);
 // Gestione delle ricompense
 const joinCommunityBtn = document.getElementById("joinCommunityBtn");
 
+function updateJoinCommunityButton() {
+    if (communityJoined) {
+        joinCommunityBtn.disabled = true;
+        joinCommunityBtn.innerText = "You have already joined the community";
+    } else {
+        joinCommunityBtn.disabled = false;
+        joinCommunityBtn.innerText = "Join the Community and Earn 10 TOSHI";
+    }
+}
+
 joinCommunityBtn.addEventListener("click", () => {
-    if (confirm("Do you want to join the community and earn 10 TOSHI?")) {
+    if (!communityJoined && confirm("Do you want to join the community and earn 10 TOSHI?")) {
         // Simula l'azione di unire la community
         window.open("https://t.me/thesatoshicircle", "_blank");
 
@@ -144,6 +155,16 @@ joinCommunityBtn.addEventListener("click", () => {
         localStorage.setItem("toshiBalance", toshiBalance);
         document.getElementById("toshiBalance").innerText = toshiBalance;
 
+        // Segna la task come completata
+        communityJoined = true;
+        localStorage.setItem("communityJoined", "true");
+
+        // Disabilita il pulsante
+        updateJoinCommunityButton();
+
         alert("You have earned 10 TOSHI!");
     }
 });
+
+// Aggiorna lo stato del pulsante alla caricamento della pagina
+updateJoinCommunityButton();
