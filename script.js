@@ -167,3 +167,10 @@ taskBtn.addEventListener("click", () => {
 
 // Avvia l'aggiornamento del gioco a intervalli regolari
 setInterval(update, 100);
+
+// Verifica che window.Telegram.WebApp sia disponibile
+if (window.Telegram.WebApp) {
+    const tg = window.Telegram.WebApp;
+    tg.ready();
+
+};
